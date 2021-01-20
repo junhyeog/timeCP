@@ -36,7 +36,7 @@ function onClickHandler(info, tab) {
   // console.log("tab: " + JSON.stringify(tab));
   const command = info.menuItemId;
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tab.id, { command }, function (response) {
+    chrome.tabs.sendMessage(tab.id, { command, url: info.pageUrl }, function (response) {
       if (chrome.extension.lastError) {
         console.log("Got error at <Sending Message>: " + chrome.extension.lastError.message);
       }
@@ -48,4 +48,3 @@ function onClickHandler(info, tab) {
   });
 };
 chrome.contextMenus.onClicked.addListener(onClickHandler);
-

@@ -28,10 +28,9 @@
   "page_action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/get_started16.png",
-      "32": "images/get_started32.png",
-      "48": "images/get_started48.png",
-      "128": "images/get_started128.png"
+      "128": "icons/neural128.png",
+      "64": "icons/neural64.png",
+      "32": "icons/neural32.png"
     }
   },
   "options_page": "options.html",
