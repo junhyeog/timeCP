@@ -33,6 +33,26 @@
       "32": "icons/neural32.png"
     }
   },
+  "commands": {
+    "copy1": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1"
+      },
+      "description": "Send a 'copy1' event to the extension"
+    },
+    "copy2": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2"
+      },
+      "description": "Send a 'copy2' event to the extension"
+    },
+    "copy3": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+3"
+      },
+      "description": "Send a 'copy3' event to the extension"
+    }
+  },
   "options_page": "options.html",
   "manifest_version": 2
 }

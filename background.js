@@ -2,10 +2,13 @@ chrome.runtime.onInstalled.addListener(function () {
 
   // Find boj first test case copy button
   const rule1 = {
-    conditions: [new chrome.declarativeContent.PageStateMatcher({
-      pageUrl: { hostEquals: 'acmicpc.net/problem/*' },
-      css: ["button[data-clipboard-target='#sample-input-1']"]
-    })
+    conditions: [
+      new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: { hostEquals: 'acmicpc.net/problem/*' },
+      }),
+      new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: { hostEquals: 'codeforces.com/*' },
+      })
     ],
     actions: [new chrome.declarativeContent.ShowPageAction()]
   };
@@ -47,4 +50,20 @@ function onClickHandler(info, tab) {
     });
   });
 };
+
+function onCommandHandler(command) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { command, url: tabs[0].url }, function (response) {
+      if (chrome.extension.lastError) {
+        console.log("Got error at <Sending Message>: " + chrome.extension.lastError.message);
+      }
+      else {
+        if (response.success) console.log("res:", response.result);
+        else console.log("Command " + command + " failed!");
+      }
+    });
+  });
+}
+
 chrome.contextMenus.onClicked.addListener(onClickHandler);
+chrome.commands.onCommand.addListener(onCommandHandler);
