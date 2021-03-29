@@ -2,7 +2,7 @@
 tools for CP
 
 # Feature
-## Fast Copy Test Case (2020.01.20)
+## Fast Copy Test Case (2021.01.20)
 ### example
 ![copy boj test case 1 example](images/copy_tc1_boj.png)|![copy cf test case 1 example](images/copy_tc1_cf.png)
 :--:|:--:
@@ -14,5 +14,8 @@ tools for CP
 - `Ctrl+Shift+1` to copy test case 1 input 
 - `Ctrl+Shift+2` to copy test case 2 input 
 - `Ctrl+Shift+3` to copy test case 3 input
+## Short-Cut of Codeforces Submit Button (2021.03.30)
+### usage
+- `Ctrl+Enter` to submit code
 ### Notice
 - If it doesn't work, please **refresh the page**.

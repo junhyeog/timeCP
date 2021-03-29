@@ -28,7 +28,7 @@ chrome.runtime.onInstalled.addListener(function () {
     if (chrome.extension.lastError) {
       console.log("Got error at <copy1>: " + chrome.extension.lastError.message);
     }
-    else console.log("Created Context Menu <copy1>!.");
+    else console.log("[+] Created Context Menu <copy1>");
   });
 });
 
@@ -52,18 +52,21 @@ function onClickHandler(info, tab) {
 };
 
 function onCommandHandler(command) {
+  console.log(command);
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    console.log(tabs);
     chrome.tabs.sendMessage(tabs[0].id, { command, url: tabs[0].url }, function (response) {
       if (chrome.extension.lastError) {
         console.log("Got error at <Sending Message>: " + chrome.extension.lastError.message);
       }
       else {
-        if (response.success) console.log("res:", response.result);
-        else console.log("Command " + command + " failed!");
+        if (response.success) console.log("[+] Res:", response.result);
+        else console.log("[-] Command " + command + " failed!");
       }
     });
   });
 }
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
+console.log("12312312");
 chrome.commands.onCommand.addListener(onCommandHandler);

@@ -1,3 +1,19 @@
+function clickCFSubmitButton() {
+  console.log(`[+] Run clickCFSubmitButton`);
+  if (url.includes("codeforces.com/contest/*/*")) {
+    const button = document.getElementsByClassName("submit")[0];
+    if (!button) {
+      console.log(`[-] Can't find Submit button`);
+      return -1;
+    }
+    button.click();
+    console.log(`[+] Submit button clicked`);
+    return 0;
+  }
+  console.log(`[-] Not Codeforces`);
+  return -1;
+}
+
 function getButtonByUrl(url, idx) {
   console.log(`[+] Run getButtonByUrl("${url}", ${idx})`);
   if (url.includes("codeforces.com/")) {
@@ -14,10 +30,10 @@ function copy(url, idx) {
   if (button) {
     button.click();
     console.log("[+] Button Clicked");
-    return 1;
+    return 0;
   }
   console.log("Button was not detected");
-  return 0;
+  return -1;
 }
 
 function messageHandler(mes) {
@@ -25,9 +41,13 @@ function messageHandler(mes) {
     console.log("[+] copy command detected");
     return copy(mes.url, Number(mes.command[4]));
   }
+  else if (mes.command.includes("submit_cf") && mes.command.length == 9) {
+    console.log("[+] submit_cf command detected");
+    return clickCFSubmitButton();
+  }
   else {
-    console.log("[+] undefined command detected");
-    return 0;
+    console.log("[-] undefined command detected");
+    return -1;
   }
 }
 
